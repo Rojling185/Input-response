@@ -1,0 +1,15 @@
+controlls:
+
+ctrl: Crouch and hovering in air
+Spacebar: Jump
+wasd and arrowkeys: directional movement
+1: mode 1 direct velocity and direct stop
+2: mode 2 slow const acceleration fast const deacceleration
+3: mode 3 ease in acceleration and const deacceleration
+
+
+Playtest:
+
+my personal prefrense was mode 2 slow const acceleration fast const deacceleration. It looked more appealing to the eye for me.
+the other 2 modes worked as well but didnt feel good in my opinion ease in was ver slow and direct velocity just didnt feel natural.
+other then that very fun experience:)

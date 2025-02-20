@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://bc512flghkxed"]
+
+[ext_resource type="Script" uid="uid://b2eiwn08j0hyw" path="res://A1/Player.cs" id="1_iyftt"]
+
+[sub_resource type="Curve" id="Curve_iyftt"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb582"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iyftt"]
+material = SubResource("StandardMaterial3D_cb582")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vbck"]
+albedo_color = Color(0.537255, 0.811765, 0.941176, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5b7ce"]
+material = SubResource("StandardMaterial3D_5vbck")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpe7g"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6lmyy"]
+material = SubResource("StandardMaterial3D_mpe7g")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iyftt"]
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5vbck"]
+height = 1.0
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("NodeThing")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.0175915, 0, 0.0194702)
+floor_constant_speed = true
+floor_max_angle = 1.22173
+script = ExtResource("1_iyftt")
+NodeThing = NodePath("Pivot")
+collisionShapePath = NodePath("PlayerCollisionUpper")
+Movement = SubResource("Curve_iyftt")
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0281014, 0.0200642, 0.0155422)
+
+[node name="Node3D" type="Node3D" parent="Pivot"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Body" type="MeshInstance3D" parent="Pivot/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_iyftt")
+skeleton = NodePath("../../..")
+
+[node name="Glasses" type="MeshInstance3D" parent="Pivot/Node3D"]
+transform = Transform3D(0.6, 0, 0, 0, 0.15, 0, 0, 0, 0.5, 0, 1.5, 0.348814)
+mesh = SubResource("CapsuleMesh_5b7ce")
+skeleton = NodePath("../../..")
+
+[node name="Bag" type="MeshInstance3D" parent="Pivot/Node3D"]
+transform = Transform3D(0.9, 0, 0, 0, 0.6, 0, 0, 0, 0.8, 0, 1.02211, -0.329132)
+mesh = SubResource("CapsuleMesh_6lmyy")
+skeleton = NodePath("../../..")
+
+[node name="PlayerCollisionLower" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0311722, 0.53139, 0.0162224)
+shape = SubResource("CapsuleShape3D_iyftt")
+
+[node name="PlayerCollisionUpper" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02984, 1.50633, 0.0112221)
+shape = SubResource("CapsuleShape3D_5vbck")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48773, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D"]
+transform = Transform3D(-0.2, -1.62004e-14, 1.74846e-08, 8.74228e-09, 0.173205, 0.1, -1.51421e-08, 0.1, -0.173205, 0, 4.4, -4.8)
